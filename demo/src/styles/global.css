@@ -1,0 +1,46 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, 'sans-serif';
+  font-size: 62.5%;
+  font-weight: 400;
+  background: #3498db;
+  text-align: center;
+  color: #fff;
+}
+
+body * {
+  box-sizing: inherit;
+}
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+h1 {
+  font-size: 46px;
+  font-weight: 200;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: 200;
+  opacity: 0.7;
+}
+
+#root {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}

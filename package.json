@@ -1,0 +1,35 @@
+{
+  "name": "react-snowstorm",
+  "version": "0.0.1",
+  "description": "A Snow Effect component for React.",
+  "main": "lib/index.js",
+  "scripts": {
+    "start-dev": "babel ./src --watch --out-dir ./lib & npm link && cd demo && npm install && npm link react-snowstorm && npm run start-dev",
+    "prebuild": "rm -rf lib/*",
+    "build": "babel ./src --out-dir ./lib",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "snow",
+    "christmas",
+    "storm",
+    "react",
+    "dhtml"
+  ],
+  "author": "Burak Can <neoberg@gmail.com>",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/burakcan/react-snowstorm"
+  },
+  "bugs": {
+    "url": "http://github.com/burakcan/react-snowstorm/issues"
+  },
+  "dependencies": {
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "babel": "^5.8.34"
+  }
+}
