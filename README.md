@@ -17,7 +17,7 @@ $ npm install --save react-snowstorm
 ## Usage
 ```javascript
 import React, { Component } from 'react';
-import { SnowStorm } from 'react-snowstorm';
+import SnowStorm from 'react-snowstorm';
 
 class MyComponent extends Component {
 	render(){
