@@ -31,8 +31,6 @@ class MyComponent extends Component {
 ```
 
 ###### Available Options (props)
-* **autoStart** = (default = true)
-Whether the snow should start automatically or not.
 
 * **animationInterval** = (default = 33)
 Theoretical "milliseconds per frame" measurement. 20 = fast + smooth, but high CPU use. 50 = more conservative, but slower
