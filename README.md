@@ -35,7 +35,7 @@ class MyComponent extends Component {
 * **animationInterval** = (default = 33)
 Theoretical "milliseconds per frame" measurement. 20 = fast + smooth, but high CPU use. 50 = more conservative, but slower
 
-* **excludeMobule** = (default = true) By default, mobile devices are excluded from the snow effect to be nice to their CPUs (and batteries.) If your local marketing department insists, "This must work on mobile!" despite being warned of the downsides, you can set this option to false to enable Snowstorm on devices like the iPhone, iPad and Android phones etc. The demo page has the effect enabled for mobile devices.
+* **excludeMobile** = (default = true) By default, mobile devices are excluded from the snow effect to be nice to their CPUs (and batteries.) If your local marketing department insists, "This must work on mobile!" despite being warned of the downsides, you can set this option to false to enable Snowstorm on devices like the iPhone, iPad and Android phones etc. The demo page has the effect enabled for mobile devices.
 
 * **flakeBottom** = (default = null)
 Limits the "floor" (pixels) of the snow. If unspecified, snow will "stick" to the bottom of the browser window and persists through browser resize/scrolling.
