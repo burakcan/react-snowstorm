@@ -1,6 +1,6 @@
 {
   "name": "react-snowstorm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Snow Effect component for React.",
   "main": "lib/index.js",
   "scripts": {
