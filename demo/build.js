@@ -1,67 +1,83 @@
-var webpack             = require('webpack');
-var HtmlWebpackPlugin   = require('html-webpack-plugin');
-var UglifyJsPlugin      = webpack.optimize.UglifyJsPlugin;
-var path                = require('path');
-var DefinePlugin        = webpack.DefinePlugin;
-var WebpackDevServer    = require("webpack-dev-server");
-var NODE_ENV            = process.env.NODE_ENV || 'production';
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+var WebpackDevServer = require("webpack-dev-server");
+var NODE_ENV = process.env.NODE_ENV || 'production';
 
 var config = {
-  entry                 : {
-    main                : [path.join(__dirname, '/src/main.js')]
+  mode: NODE_ENV,
+  entry: {
+    main: [path.join(__dirname, '/src/main.js')]
   },
 
-  output                : {
-    path                : path.join(__dirname, '/dist'),
-    filename            : '[name].js',
-    publicPath          : '/'
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: '[name].js',
+    publicPath: '/'
   },
 
-  devtool               : ((NODE_ENV==='development') ? 'source-map' : false),
+  devtool: ((NODE_ENV === 'development') ? 'source-map' : false),
 
-  plugins               : [
+  plugins: [
     new HtmlWebpackPlugin({
-      title             : '',
-      template          : path.join(__dirname, '/src/index.html'),
-      inject            : true,
-      filename          : 'index.html'
+      title: '',
+      template: path.join(__dirname, '/src/index.html'),
+      inject: true,
+      filename: 'index.html'
     }),
 
     new webpack.DefinePlugin({
-      'process.env'     : {
-        NODE_ENV        : JSON.stringify(NODE_ENV)
+      'process.env': {
+        NODE_ENV: JSON.stringify(NODE_ENV)
       }
     }),
   ],
 
-  resolve               : {
-    extensions          : ['', '.js', '.css'],
-    alias               : {
-      'root'            : path.join(__dirname, '/src'),
-      'components'      : path.join(__dirname, '/src/components'),
-      'styles'          : path.join(__dirname, '/src/styles')
+  resolve: {
+    extensions: ['.js', '.css'],
+    alias: {
+      'root': path.join(__dirname, '/src'),
+      'components': path.join(__dirname, '/src/components'),
+      'styles': path.join(__dirname, '/src/styles')
     }
   },
 
-  module                : {
-    loaders             : [
-      { test            : /\.js$/,
-        loaders         : ['react-hot', 'babel-loader'],
-        include         : path.join(__dirname, '/src'),
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrcRoots: ['.', '../']
+            }
+          }
+        ],
+        include: path.join(__dirname, '/src')
       }, {
-        test            : /\.css$/,
-        loaders         : ['style', 'css']
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   }
 }
 
 if (NODE_ENV === 'production') {
-  config.plugins.push(new UglifyJsPlugin({
-    compress  : { warnings : false },
-    sourcemap : false,
-    mangle    : true
-  }));
+  // config.plugins.push(new UglifyJsPlugin({
+  //   compress  : { warnings : false },
+  //   sourcemap : false,
+  //   mangle    : true
+  // }));
+  // config.optimization = {
+  //   minimizer: [
+  //     new UglifyJsPlugin({
+  //       compress: { warnings: false },
+  //       sourcemap: false,
+  //       mangle: true
+  //     })
+  //   ]
+  // }
 } else if (NODE_ENV === 'development') {
   config.entry.main.unshift('webpack/hot/only-dev-server');
   config.entry.main.unshift('webpack-dev-server/client?http://0.0.0.0:3000');
@@ -72,7 +88,7 @@ const compiler = webpack(config);
 
 if (NODE_ENV === 'development') {
   const server = new WebpackDevServer(compiler, {
-    contentBase : path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, 'dist'),
     noInfo: false,
     quiet: false,
     lazy: false,
@@ -84,7 +100,7 @@ if (NODE_ENV === 'development') {
     }
   });
 
-  server.listen(3000, 'localhost', function(){
+  server.listen(3000, 'localhost', function () {
     console.log('Webpack Dev Server is listening on port 3000');
   });
 } else if (NODE_ENV === 'production') {
@@ -92,8 +108,8 @@ if (NODE_ENV === 'development') {
     if (err) throw err;
 
     console.log(stats.toString({
-      colors : true,
-      chunks : false
+      colors: true,
+      chunks: false
     }));
   });
 }
