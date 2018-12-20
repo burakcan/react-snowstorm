@@ -13,10 +13,15 @@
 
 export default function snowStorm(userOptions) {
 
+  // Throw SSR error
+  if(typeof window === "undefined"){
+    throw new Error("This library doesn't work on server side.");
+  }
+
   // --- common properties ---
 
   var defaultOptions = {
-    autoStart : true,
+    autoStart : false,
     excludeMobile : true,
     flakesMax : 128,
     flakesMaxActive : 64,
@@ -648,18 +653,12 @@ export default function snowStorm(userOptions) {
     storm.events.remove(isIE?document:window,'mousemove',doDelayedStart);
   }
 
-  function doStart() {
+  this.doStart = function() {
     if (!storm.excludeMobile || !isMobile) {
       doDelayedStart();
     }
-    // event cleanup
-    storm.events.remove(window, 'load', doStart);
   }
 
-  // hooks for starting the snow
-  if (storm.autoStart) {
-    storm.events.add(window, 'load', doStart, false);
-  }
 
   return this;
 
