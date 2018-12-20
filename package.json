@@ -26,10 +26,15 @@
     "url": "http://github.com/burakcan/react-snowstorm/issues"
   },
   "dependencies": {
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
   },
   "devDependencies": {
-    "babel": "^5.8.34"
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0"
   }
 }
