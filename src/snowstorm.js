@@ -11,6 +11,8 @@
 /*jslint nomen: true, plusplus: true, sloppy: true, vars: true, white: true */
 /*global window, document, navigator, clearInterval, setInterval */
 
+import ReactDOMServer from 'react-dom/server';
+
 export default function snowStorm(userOptions) {
 
   // Throw SSR error
@@ -372,7 +374,14 @@ export default function snowStorm(userOptions) {
     this.active = 1;
     this.fontSize = (10+(this.type/5)*10);
     this.o = document.createElement('div');
-    this.o.innerHTML = storm.snowCharacter;
+    let snowHTML = null
+    if (storm.snowComponent) {
+      snowHTML = ReactDOMServer.renderToStaticMarkup(
+        storm.snowComponent
+      );
+    }
+    var flakeEl = snowHTML ? snowHTML : storm.snowCharacter
+    this.o.innerHTML = flakeEl;
     if (storm.className) {
       this.o.setAttribute('class', storm.className);
     }
